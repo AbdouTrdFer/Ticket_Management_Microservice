@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Order Frontend</title>
+</head>
+<body>
+<h1>Order List</h1>
+<ul id="orders"></ul>
+
+<script>
+    fetch('http://localhost:8080/api/orders')
+        .then(res => res.json())
+        .then(data => {
+            const ul = document.getElementById('orders');
+            data.forEach(order => {
+                const li = document.createElement('li');
+                li.textContent = `${order.productName} - ${order.quantity} pcs - $${order.price}`;
+                ul.appendChild(li);
+            });
+        });
+</script>
+</body>
+</html>
